@@ -1,0 +1,14 @@
+Helmich\RestTools\Mvc\View\JsonView:
+  properties:
+    serializer:
+      object: Helmich\RestTools\Rest\Serializer\JsonSerializer
+
+Helmich\RestTools\Mvc\View\YamlView:
+  properties:
+    serializer:
+      object: Helmich\RestTools\Rest\Serializer\YamlSerializer
+
+Helmich\RestTools\Mvc\View\MsgpackView:
+  properties:
+    serializer:
+      object: Helmich\RestTools\Rest\Serializer\MsgpackSerializer

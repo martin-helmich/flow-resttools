@@ -1,0 +1,13 @@
+{
+    "name": "helmich/resttools",
+    "type": "typo3-flow-package",
+    "description": "Utility package for creating RESTful webservices with TYPO3 Flow",
+    "require": {
+        "typo3/flow": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Helmich\\RestTools": "Classes"
+        }
+    }
+}
