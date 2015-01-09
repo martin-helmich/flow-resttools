@@ -1,6 +1,12 @@
 <?php
 namespace Helmich\RestTools\Rest\Serializer;
 
+/**
+ * JSON serializer.
+ *
+ * @package    Helmich\RestTools
+ * @subpackage Rest\Serializer
+ */
 class JsonSerializer implements SerializerInterface {
 
 	public function serialize($data) {

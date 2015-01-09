@@ -2,10 +2,15 @@
 namespace Helmich\RestTools\Rest\Normalizer;
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\ControllerContext;
 use TYPO3\Flow\Reflection\ClassReflection;
 use TYPO3\Flow\Reflection\ReflectionService;
 
+/**
+ * Helper class for recursively normalizing an entire data set.
+ *
+ * @package    Helmich\RestTools
+ * @subpackage Rest\Normalizer
+ */
 class AggregateNormalizer {
 
 	/**
@@ -14,6 +19,17 @@ class AggregateNormalizer {
 	 */
 	protected $reflectionService;
 
+	/**
+	 * Normalizes a data set.
+	 *
+	 * This method takes a data set and a set of normalizers that should be used
+	 * for different domain classes.
+	 *
+	 * @param mixed                 $data        The data set to normalize
+	 * @param NormalizerInterface[] $normalizers A list of normalizers for classes
+	 * @return array The normalized data set
+	 * @throws \Exception
+	 */
 	public function normalize($data, array $normalizers) {
 		if (is_array($data) || ($data instanceof \Traversable)) {
 			$result = [];
@@ -33,9 +49,13 @@ class AggregateNormalizer {
 	}
 
 	/**
-	 * @param       $className
-	 * @param array $normalizers
-	 * @return NormalizerInterface
+	 * Gets the normalizer to use for a given class.
+	 *
+	 * @todo This should be optimized! Ideas: Simple run-time cache, something like static method compilation, ...
+	 *
+	 * @param string $className   The class name
+	 * @param array  $normalizers The normalizer configuration
+	 * @return NormalizerInterface The normalizer to use
 	 * @throws \Exception
 	 */
 	private function getNormalizerForClass($className, array $normalizers) {
