@@ -22,7 +22,7 @@ class AutoNormalizer implements NormalizerInterface {
 
 	protected $getterMethodsForClass = [];
 
-	public function objectToScalar($object) {
+	public function objectToScalar($object, $path = NULL) {
 		$className = $this->reflectionService->getClassNameByObject($object);
 		$methods   = $this->getGetterMethodsForClass($className);
 
