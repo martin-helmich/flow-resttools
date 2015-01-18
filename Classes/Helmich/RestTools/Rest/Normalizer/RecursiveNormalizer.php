@@ -5,7 +5,7 @@ use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Reflection\ClassReflection;
 use TYPO3\Flow\Reflection\ReflectionService;
 
-class AggregateNormalizer {
+class RecursiveNormalizer {
 
 	/**
 	 * @var ReflectionService

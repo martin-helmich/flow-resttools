@@ -1,7 +1,7 @@
 <?php
 namespace Helmich\RestTools\Mvc\View;
 
-use Helmich\RestTools\Rest\Normalizer\AggregateNormalizer;
+use Helmich\RestTools\Rest\Normalizer\RecursiveNormalizer;
 use Helmich\RestTools\Rest\Normalizer\NormalizerInterface;
 use Helmich\RestTools\Rest\Serializer\SerializerInterface;
 use TYPO3\Flow\Annotations as Flow;
@@ -34,7 +34,7 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 			$response->setHeader('Content-Type', $this->serializer->getMimeType());
 		}
 
-		$normalizer = new AggregateNormalizer($this->normalizers, $this->fallbackNormalizer);
+		$normalizer = new RecursiveNormalizer($this->normalizers, $this->fallbackNormalizer);
 
 		$data = $this->getDataToRender();
 		$data = $normalizer->normalize($data, $this->normalizers);
