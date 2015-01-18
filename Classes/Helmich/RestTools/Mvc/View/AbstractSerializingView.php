@@ -2,6 +2,7 @@
 namespace Helmich\RestTools\Mvc\View;
 
 use Helmich\RestTools\Rest\Normalizer\AggregateNormalizer;
+use Helmich\RestTools\Rest\Normalizer\NormalizerContainer;
 use Helmich\RestTools\Rest\Normalizer\NormalizerInterface;
 use Helmich\RestTools\Rest\Serializer\SerializerInterface;
 use TYPO3\Flow\Annotations as Flow;
@@ -31,9 +32,10 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 	protected $serializer;
 
 	/**
-	 * @var array
+	 * @var NormalizerContainer
+	 * @Flow\Inject
 	 */
-	protected $normalizers = [];
+	protected $normalizers;
 
 	/**
 	 * Renders the view.
@@ -67,7 +69,7 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 	 * @return void
 	 */
 	public function registerNormalizerForClass($objectClass, NormalizerInterface $normalizer) {
-		$this->normalizers[$objectClass] = $normalizer;
+		$this->normalizers->put($objectClass, $normalizer);
 	}
 
 	/**
