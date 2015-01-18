@@ -13,12 +13,6 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 	protected $variablesToRender = NULL;
 
 	/**
-	 * @var AggregateNormalizer
-	 * @Flow\Inject
-	 */
-	protected $normalizer;
-
-	/**
 	 * @var SerializerInterface
 	 * @Flow\Inject
 	 */
@@ -29,19 +23,31 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 	 */
 	protected $normalizers = [];
 
+	/**
+	 * @var NormalizerInterface
+	 */
+	protected $fallbackNormalizer = NULL;
+
 	public function render() {
 		$response = $this->controllerContext->getResponse();
 		if ($response instanceof HttpResponse) {
 			$response->setHeader('Content-Type', $this->serializer->getMimeType());
 		}
 
+		$normalizer = new AggregateNormalizer($this->normalizers, $this->fallbackNormalizer);
+
 		$data = $this->getDataToRender();
-		$data = $this->normalizer->normalize($data, $this->normalizers);
+		$data = $normalizer->normalize($data, $this->normalizers);
+
 		return $this->renderNormalizedData($data);
 	}
 
 	public function registerNormalizerForClass($objectClass, NormalizerInterface $normalizer) {
 		$this->normalizers[$objectClass] = $normalizer;
+	}
+
+	public function registerFallbackNormalizer(NormalizerInterface $normalizer) {
+		$this->fallbackNormalizer = $normalizer;
 	}
 
 	protected function guessVariablesToRender() {

@@ -8,4 +8,6 @@ interface SerializingViewInterface {
 
 	public function registerNormalizerForClass($objectClass, NormalizerInterface $normalizer);
 
+	public function registerFallbackNormalizer(NormalizerInterface $normalizer);
+
 }
