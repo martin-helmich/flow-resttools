@@ -1,9 +1,14 @@
 <?php
 namespace Helmich\RestTools\Rest\Serializer;
 
-
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * YAML serializer. Uses Symfony's YAML component.
+ *
+ * @package    Helmich\RestTools
+ * @subpackage Rest\Serializer
+ */
 class YamlSerializer implements SerializerInterface {
 
 	protected $inlineDepth = 4;

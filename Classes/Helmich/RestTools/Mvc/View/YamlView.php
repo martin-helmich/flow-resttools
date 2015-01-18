@@ -1,8 +1,12 @@
 <?php
 namespace Helmich\RestTools\Mvc\View;
 
-use Symfony\Component\Yaml\Yaml;
-
+/**
+ * View using YAML serialization.
+ *
+ * @package    Helmich\RestTools
+ * @subpackage Mvc\View
+ */
 class YamlView extends AbstractSerializingView {
 
 }

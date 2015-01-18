@@ -1,6 +1,12 @@
 <?php
 namespace Helmich\RestTools\Rest\Serializer;
 
+/**
+ * MessagePack serializer (requires the "msgpack" extension)
+ *
+ * @package    Helmich\RestTools
+ * @subpackage Rest\Serializer
+ */
 class MsgpackSerializer implements SerializerInterface {
 
 	public function serialize($data) {
