@@ -25,7 +25,7 @@ class AggregateNormalizer {
 		} else if (is_object($data)) {
 			$normalizer = $this->getNormalizerForClass(get_class($data), $normalizers);
 			return $this->normalize($normalizer->objectToScalar($data), $normalizers);
-		} else if (is_scalar($data)) {
+		} else if (is_scalar($data) || is_null($data)) {
 			return $data;
 		}
 
