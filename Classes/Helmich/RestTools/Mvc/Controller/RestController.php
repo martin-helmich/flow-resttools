@@ -61,16 +61,15 @@ abstract class RestController extends ActionController {
 					$config->allowAllProperties();
 				}
 
-				$value = $this->unserializeBody($argument->getDataType());
+				$value = $this->unserializeBody();
 				$argument->setValue($value);
-
 			} elseif ($argument->isRequired()) {
 				throw new RequiredArgumentMissingException('Required argument "' . $argumentName  . '" is not set.', 1298012500);
 			}
 		}
 	}
 
-	private function unserializeBody($targetType) {
+	private function unserializeBody() {
 		$http = $this->request->getHttpRequest();
 		$bodyString = $http->getContent();
 		switch ($http->getHeader('Content-Type')) {
@@ -82,6 +81,8 @@ abstract class RestController extends ActionController {
 	}
 
 	/**
+	 * Returns controller arguments that are built directly from the request body.
+	 *
 	 * @param ObjectManagerInterface $objectManager
 	 * @return array
 	 * @Flow\CompileStatic

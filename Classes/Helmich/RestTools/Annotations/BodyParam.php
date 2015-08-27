@@ -2,10 +2,15 @@
 namespace Helmich\RestTools\Annotations;
 
 /**
- * Class BodyParam
+ * Annotation denoting controller arguments to build from the request body
+ *
+ * This annotation is intended to be used to denote controller action arguments
+ * that should be mapped directly from the request body.
  *
  * @package Helmich\RestTools
  * @subpackage Annotations
+ * @author Martin Helmich <typo3@martin-helmich.de>
+ *
  * @Annotation
  * @Target("METHOD")
  */
