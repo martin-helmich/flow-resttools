@@ -38,6 +38,11 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 	protected $recursiveNormalizer;
 
 	/**
+	 * @var string|null
+	 */
+	protected $rootElement = NULL;
+
+	/**
 	 * Renders the view.
 	 *
 	 * This is done by applying all normalizers assigned to this view to the
@@ -103,6 +108,16 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 	}
 
 	/**
+	 * Sets a root element for the serialization.
+	 *
+	 * @param string $element A variable name.
+	 * @return void
+	 */
+	public function setRootElement($element) {
+		$this->rootElement = $element;
+	}
+
+	/**
 	 * Gets the data set to render.
 	 *
 	 * @return array The data set to render
@@ -115,6 +130,10 @@ abstract class AbstractSerializingView extends AbstractView implements Serializi
 		$data = [];
 		foreach ($this->variablesToRender as $key) {
 			$data[$key] =& $this->variables[$key];
+		}
+
+		if ($this->rootElement !== NULL) {
+			return $data[$this->rootElement];
 		}
 
 		return $data;
