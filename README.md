@@ -176,6 +176,9 @@ class ProductController extends RestController
 
   public function listAction()
   {
+    if ($view instanceof SerializingViewInterface) {
+      $this->view->setRootElement('products');
+    }
     $this->view->assign('products', $this->productRepository->findAll());
   }
 
