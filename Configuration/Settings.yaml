@@ -1,0 +1,7 @@
+TYPO3:
+  Flow:
+    error:
+      exceptionHandler:
+        # Defines the global, last-resort exception handler.
+        # The specified class must implement \TYPO3\Flow\Error\ExceptionHandlerInterface
+        className: Helmich\RestTools\Error\ProductionRestExceptionHandler

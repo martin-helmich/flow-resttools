@@ -17,6 +17,7 @@ It specifically handles the following concerns:
 - Controller configuration
 - Serializing domain objects
 - Request body handling
+- Exception handling
 
 Controller configuration
 ------------------------
@@ -104,6 +105,16 @@ class TestController {
 The `allowAllProperties` key also pre-configures the property mapper to allow
 all properties to be mapped (which means that you don't need to explicitly
 enable this in an `initialize` method.
+
+Exception handling
+------------------
+
+This package overrides Flow's default exception handlers with it's own set of
+exception handlers. Both error handlers (`ProductionRestExceptionHandler` and
+`DevelopmentRestExceptionHandler`) present uncaught exceptions as JSON document
+and attempt to guess an appropriate HTTP response code from the exception type
+(for instance, a 400 status code will be thrown when an error during property
+mapping occurred).
 
 Complete example
 ----------------
