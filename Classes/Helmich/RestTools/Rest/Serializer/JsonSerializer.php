@@ -14,7 +14,7 @@ class JsonSerializer implements SerializerInterface {
 	}
 
 	public function unserialize($string) {
-		return json_decode($string);
+		return json_decode($string, TRUE);
 	}
 
 	public function getMimeType() {
