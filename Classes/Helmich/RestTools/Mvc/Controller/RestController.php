@@ -5,6 +5,7 @@ use Helmich\RestTools\Annotations\BodyParam;
 use Helmich\RestTools\Mvc\View\JsonView;
 use Helmich\RestTools\Mvc\View\MsgpackView;
 use Helmich\RestTools\Mvc\View\YamlView;
+use Helmich\RestTools\Rest\Serializer\AutoSerializer;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use TYPO3\Flow\Mvc\Exception\RequiredArgumentMissingException;
 use TYPO3\Flow\Object\ObjectManagerInterface;
@@ -75,12 +76,8 @@ abstract class RestController extends ActionController {
 	private function unserializeBody() {
 		$http = $this->request->getHttpRequest();
 		$bodyString = $http->getContent();
-		switch ($http->getHeader('Content-Type')) {
-			case 'application/json':
-				return json_decode($bodyString, TRUE);
-			default:
-				return $bodyString;
-		}
+		$serializer = new AutoSerializer($http->getHeader('Content-Type'));
+		return $serializer->unserialize($bodyString);
 	}
 
 	/**
