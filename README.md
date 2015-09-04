@@ -1,5 +1,5 @@
-TYPO3 Flow REST toolkit
-=======================
+Toolkit for developing RESTful webservices with TYPO3 Flow
+==========================================================
 
 Author
 ------
