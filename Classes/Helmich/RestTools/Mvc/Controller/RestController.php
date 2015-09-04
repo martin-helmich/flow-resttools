@@ -56,9 +56,12 @@ abstract class RestController extends ActionController {
 			if ($this->request->hasArgument($argumentName)) {
 				$argument->setValue($this->request->getArgument($argumentName));
 			} elseif ($bodyArgument !== NULL && $argumentName == $bodyArgument->argumentName) {
+				$config = $argument->getPropertyMappingConfiguration();
+
 				if ($bodyArgument->allowAllProperties) {
-					$config = $argument->getPropertyMappingConfiguration();
 					$config->allowAllProperties();
+				} else if ($bodyArgument->allowProperties) {
+					call_user_func_array(array($config, 'allowProperties'), $bodyArgument->allowProperties);
 				}
 
 				$value = $this->unserializeBody();

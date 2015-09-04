@@ -26,6 +26,11 @@ final class BodyParam {
 	 */
 	public $allowAllProperties = FALSE;
 
+	/**
+	 * @var array
+	 */
+	public $allowProperties = [];
+
 	public function __construct(array $values) {
 		if (isset($values['value']) || isset($values['argumentName'])) {
 			$this->argumentName = ltrim(isset($values['argumentName']) ? $values['argumentName'] : $values['value'], '$');
@@ -33,6 +38,10 @@ final class BodyParam {
 
 		if (isset($values['allowAllProperties'])) {
 			$this->allowAllProperties = (bool) $values['allowAllProperties'];
+		}
+
+		if (isset($values['allowProperties'])) {
+			$this->allowProperties = $values['allowProperties'];
 		}
 	}
 

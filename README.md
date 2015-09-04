@@ -94,7 +94,7 @@ use Helmich\RestTools\Annotations as Rest;
 
 class TestController {
   /**
-   * @Rest\BodyParam("$product", allowAllProperties=TRUE)
+   * @Rest\BodyParam("$product", allowProperties={"name", "price"})
    */
   public function testAction(Product $product) {
     // ...
@@ -102,9 +102,22 @@ class TestController {
 }
 ```
 
-The `allowAllProperties` key also pre-configures the property mapper to allow
-all properties to be mapped (which means that you don't need to explicitly
-enable this in an `initialize` method.
+The `allowProperties` key also pre-configures the property mapper to allow a
+certain set of properties to be mapped (which means that you don't need to
+explicitly enable this in an `initialize` method.
+
+Alternatively, you can use the `allowAllProperties` key and set it to `true` to
+allow *all* properties to be mapped (use with caution, as this might expose a
+security risk):
+
+```php
+/**
+ * @Rest\BodyParam("$product", allowAllProperties=TRUE)
+ */
+public function testAction(Product $product) {
+  // ...
+}
+```
 
 Exception handling
 ------------------
