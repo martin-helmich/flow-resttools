@@ -28,7 +28,7 @@ class DevelopmentRestExceptionHandler extends AbstractExceptionHandler {
 	 * @param \Exception $exception The exception
 	 * @return void
 	 */
-	protected function echoExceptionWeb(\Exception $exception) {
+	protected function echoExceptionWeb($exception) {
 		if ($exception instanceof Exception) {
 			$statusCode = 400;
 			$json = [
